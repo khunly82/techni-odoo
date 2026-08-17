@@ -1,4 +1,46 @@
 <odoo>
+
+    <record id="view_dev_list" model="ir.ui.view">
+        <field name="name">View List</field>
+        <field name="model">demo.developers</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="id"></field>
+                <field name="name"></field>
+                <field name="website"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_game_list" model="ir.ui.view">
+        <field name="name">View game List</field>
+        <field name="model">demo.games</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="id"></field>
+                <field name="name"></field>
+                <field name="developer_id"></field>
+                <field name="release_date"></field>
+                <field name="tags_len"></field>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_game_kanban" model="ir.ui.view">
+        <field name="name">View game List</field>
+        <field name="model">demo.games</field>
+        <field name="arch" type="xml">
+            <kanban default_group_by="developer_id">
+                <templates>
+                    <t t-name="card">
+                        <field name="name"/>
+                        <field name="tag_ids"/>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+
     <record id="action_dev" model="ir.actions.act_window">
         <field name="name">Devs</field>
         <field name="res_model">demo.developers</field>

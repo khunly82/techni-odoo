@@ -1,4 +1,4 @@
-from odoo import models, fields
+from odoo import models, fields, api
 
 class Game(models.Model):
     _name = 'demo.games' # table: demo_games
@@ -18,3 +18,9 @@ class Game(models.Model):
 
     developer_id = fields.Many2one('demo.developers', string='Dev')
     tag_ids = fields.Many2many('demo.tags', string='Tags')
+
+    tags_len = fields.Integer(compute='_compute_tags_len', store=False)
+
+    @api.depends('tag_ids')
+    def _compute_tags_len(self):
+        self.tags_len = len(self.tag_ids)
